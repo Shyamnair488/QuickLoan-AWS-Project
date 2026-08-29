@@ -1,0 +1,87 @@
+For Fresher Students
+
+(You will explain as if you personally did this project during training.)
+
+Project Title: 
+QuickLoan – Scalable Web Application on AWS
+
+Duration: 
+Academic / Internship Project
+
+Project Overview:
+We worked on a cloud‑based project called QuickLoan, which is a web application with:
+
+Backend: PHP
+
+Frontend: HTML, CSS, JavaScript
+
+We designed and implemented a complete VPC (Virtual Private Cloud) in AWS to host our infrastructure.
+Our application was first deployed and tested on an EC2 instance running PHP and Apache. 
+Once tested, we captured its AMI (Amazon Machine Image).
+
+For the database, we used Amazon RDS with MySQL and created proper Security Groups to allow secure communication between EC2 instances and RDS.
+
+We then used the captured AMI in an Auto Scaling Launch Template and configured an Auto Scaling Group so that the number of EC2 instances automatically scaled up or down based on demand.
+To handle traffic efficiently, we placed an Elastic Load Balancer (ALB) in front of the Auto Scaling Group, distributing requests across multiple instances.
+
+============================
+
+How you can explain to an interviewer (as a fresher level)
+
+I have worked on a project called QuickLoan where we developed a PHP backend with HTML, CSS, and JS frontend. We deployed it on AWS by creating our own VPC, subnets, security groups, and RDS for MySQL database. We first tested the application on a single EC2 instance with Apache and PHP, created an AMI from it, and used that in an Auto Scaling Group. We also configured an Application Load Balancer to distribute traffic to the EC2 instances created by Auto Scaling. This gave us hands‑on experience with scalable cloud infrastructure.
+
+=============================
+
+ For Experienced Professionals 
+
+(They will explain as if they actually worked on it in a production environment.)
+
+Project Title: 
+QuickLoan – Scalable Web Application on AWS
+
+Role: 
+AWS / DevOps Engineer
+
+Project Overview:
+QuickLoan is a web‑based loan application platform:
+
+Backend: PHP running on Apache
+Frontend: HTML, CSS, JS
+
+We architected and deployed QuickLoan on AWS with a fully functional VPC including public and private subnets. The backend EC2 instances securely communicated with an RDS MySQL database hosted in a private subnet with its own Security Group.
+
+We deployed the app on an EC2 instance (Apache + PHP), validated it, and then created an AMI from that instance. This AMI was used in a Launch Template attached to an Auto Scaling Group to automatically scale instances based on demand (CPU usage, request count, etc.).
+An Application Load Balancer (ALB) was configured to distribute incoming requests across instances in multiple Availability Zones, ensuring high availability and fault tolerance.
+
+================================
+
+Roles & Responsibilities:
+
+1) Designed and created the VPC, subnets, route tables, and Internet Gateway.
+
+2) Configured Security Groups to allow only necessary traffic (e.g., port 80/443 for instances and port 3306 for RDS).
+
+3) Deployed and tested the PHP application on EC2 with Apache, created AMI after successful testing.
+
+4) Configured Launch Templates and Auto Scaling Groups for automated horizontal scaling.
+
+5) Set up RDS MySQL 
+
+6) Implemented and configured ALB to balance traffic across multiple EC2 instances.
+
+7) Monitored and troubleshooted infrastructure to ensure high uptime and availability.
+
+============================================
+
+How you can explain to an interviewer (as an experienced professional)
+
+In my previous project, I worked for about 2 years on a platform called QuickLoan. 
+It was a PHP‑based web app hosted on AWS. 
+I was responsible for building a complete VPC setup with proper subnets, route tables, and security groups. 
+We deployed our app on EC2 with Apache and PHP, created an AMI, and used that with a Launch Template and Auto Scaling Group to automatically scale as demand changed. 
+We used RDS MySQL for our database and secured communication using Security Groups. 
+I also configured an Application Load Balancer to distribute traffic efficiently across multiple instances. 
+I was actively involved in setting up and managing this infrastructure end‑to‑end
+
+
+

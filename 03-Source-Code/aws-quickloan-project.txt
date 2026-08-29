@@ -1,0 +1,137 @@
+vpc
+subnets (3 public ) and one private
+pub rt- connect with pub subnets (2)
+igw
+ngw
+sg - in your vpc 
+web and db
+
+jump-server      amazon6.18
+app-server       amazon6.18
+database-server  amazon6.18
+
+====================
+
+(app-server)
+
+yum update -y
+
+yum install -y nginx
+
+systemctl start nginx
+
+chkconfig nginx on
+
+(we can cross check whether nginx is working or not by entering publicip:80 in the browser)
+
+yum install -y php8.2 php-fpm php-mysqlnd php-pdo php-mbstring 
+
+php -v
+
+systemctl start php-fpm
+
+chkconfig php-fpm on
+
+systemctl restart nginx
+
+Copy the following three folders from our laptop to the app server using WinSCP.
+includes, nginx, public
+
+mv /home/ec2-user/includes /usr/share/nginx/html    /var/www/html
+
+mv /home/ec2-user/public /usr/share/nginx/html
+
+chown -R nginx:nginx /usr/share/nginx/html/public
+
+chmod -R 755 /usr/share/nginx/html/public
+
+===================
+
+create s3 bucket
+(aws-project-bucket-27022026)
+
+upload images folder present in public folder
+
+==================
+
+vim /usr/share/nginx/html/public/index.html
+
+:%s/loanapp332211.s3.eu-west-2.amazonaws.com/aws-project-bucket-27022026.s3.us-east-2.amazonaws.com
+
+replace default bucket url with your url
+-----------------
+
+vim /usr/share/nginx/html/public/apply.php
+
+<img src="https://aws-project-bucket-27022026.s3.us-east-2.amazonaws.com/images/quickloan_logo.png" alt="QuickLoan Logo">
+
+logo file
+-----------------
+
+cd /usr/share/nginx/html/includes
+
+vim db_connect.php
+
+Replace endpoint, database username & database password
+
+exit
+exit
+
+connect your app server to db server
+-------------------
+
+ssh -i db-keypair.pem ec2-user@private_ip_of_database_server
+
+yum install mariadb105 -y
+
+mysql -h endpoint -u username -ppassword
+
+CREATE DATABASE quickloan_db;
+
+USE quickloan_db;
+
+CREATE TABLE applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    contact VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    loan_type VARCHAR(50) NOT NULL
+);
+
+--------------------
+
+exit;
+
+exit
+exit
+
+--------------------
+
+noip.com
+
+A record -- loan.ddns.net -- pub-ip
+
+--------------------
+
+ssh -i app-keypair.pem ec2-user@private_ip_of_app_server
+
+vim /home/ec2-user/nginx/quickloan.conf
+
+server_name quickloan.hopto.org; ##replace with your domain
+
+---------------------
+
+mv /home/ec2-user/nginx/quickloan.conf /etc/nginx/conf.d
+
+nginx -t
+
+systemctl restart nginx
+
+systemctl reload nginx
+
+
+
+
+
+
+
